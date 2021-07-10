@@ -2,64 +2,65 @@ const express = require('express');
 const Post = require('./../models/post');
 const router = express.Router();
 
-router.get('/new', (req, res) => {
-    res.render('posts/new', {post: new Post() });
+//get all blogs route
+router.get('/getAllBlogs', async function (req, res) {
+	const posts = await Post.find().sort({ createdAt: 'desc' });
+	if (posts == null) {
+		res.redirect('/');
+	} else {
+		res.json(posts);
+	}
 });
 
-
-router.get('/edit/:id', async (req, res) => {
-    const post = await Post.findById(req.params.id);
-    res.render('posts/edit', {post: post });
+//post a new blog route
+router.post('/new', (req, res) => {
+	if (!req.body.title) {
+		res.json({ success: false, message: 'Blog title is required.' }); // Return error message
+	} else {
+		if (!req.body.markdown) {
+			res.json({ success: false, message: 'Blog content is required.' }); // Return error
+		} else {
+			const blog = new Post({
+				title: req.body.title,
+				description: req.body.description,
+				markdown: req.body.markdown,
+			});
+			// Save blog into database
+			blog.save((err) => {
+				// Check if error
+				if (err) {
+					if (err.errors) {
+						if (err.errors.title) {
+							res.json({ success: false, message: err.errors.title.message });
+						} else {
+							if (err.errors.markdown) {
+								res.json({
+									success: false,
+									message: err.errors.markdown.message,
+								});
+							} else {
+								res.json({ success: false, message: err });
+							}
+						}
+					} else {
+						res.json({ success: false, message: err });
+					}
+				} else {
+					res.json({ success: true, message: 'Blog saved!' });
+				}
+			});
+		}
+	}
 });
 
-router.get('/:id', async (req, res) =>{
-    const post = await Post.findById(req.params.id);
-    if(post == null)
-    {
-        res.redirect('/');
-    }
-    res.render('posts/show', {post : post});
-})
-
-//post method for new post
-router.post('/', async (req, res, next) => {
-    req.post = new Post();
-    next()
-}, savePostAndRedirect('new'))
-
-//post method for edit post
-router.put('/:id', async (req, res, next) => {
-    req.post = await Post.findById(req.params.id);
-    next()
-}, savePostAndRedirect('edit'))
-
-//post method for delete post
-router.delete('/:id', async (req, res) => {
-    await Post.findByIdAndDelete(req.params.id);
-    res.redirect('/');
-})
-
-//helper function for new and edit post
-function savePostAndRedirect(path){
-    return async (req, res) => {
-        let post = req.post;
-        post.title = req.body.title
-        post.description = req.body.description
-        post.markdown =  req.body.markdown
-        try
-        {
-            console.log("saving");
-            post = await post.save();
-            
-            res.redirect(`/posts/${post.id}`) 
-        }
-        catch(e)
-        {
-            console.log("caught exception")
-            console.log(e);
-            res.render(`posts/${path}`, {post : post})
-        }
-    }
-}
+//get a single blog route
+router.get('/:id', async (req, res) => {
+	const post = await Post.findById(req.params.id);
+	if (post == null) {
+		res.redirect('/');
+	} else {
+		res.json(post);
+	}
+});
 
 module.exports = router;

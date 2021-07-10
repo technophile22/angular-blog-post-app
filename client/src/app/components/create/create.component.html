@@ -1,0 +1,94 @@
+<h1 class="page-header mt-2">Create Post</h1>
+
+<!-- Custom Success/Error Message -->
+<div class="row show-hide-message" *ngIf="message">
+	<div [ngClass]="messageClass">
+		{{ message }}
+	</div>
+</div>
+
+<form [formGroup]="form" name="blogForm" (submit)="onBlogSubmit()">
+	<div class="form-group">
+		<label for="title">Title</label>
+		<div
+			[ngClass]="{
+				'has-success': form.controls.title.valid,
+				'has-error': form.controls.title.dirty && form.controls.title.errors
+			}"
+		>
+			<input
+				type="text"
+				name="title"
+				id="title"
+				class="form-control"
+				formControlName="title"
+				required
+			/>
+			<span
+				class="help-block"
+				*ngIf="
+					form.controls.title.dirty && form.controls.title.errors?.required
+				"
+				style="color: red"
+			>
+				This field is required.
+			</span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="description">Description</label>
+		<textarea
+			name="description"
+			id="description"
+			class="form-control"
+			formControlName="description"
+		></textarea>
+	</div>
+
+	<div class="form-group">
+		<label for="markdown">Content</label>
+		<div
+			[ngClass]="{
+				'has-success': form.controls.markdown.valid,
+				'has-error':
+					form.controls.markdown.dirty && form.controls.markdown.errors
+			}"
+		>
+			<ckeditor
+				[editor]="Editor"
+				required
+				name="markdown"
+				id="markdown"
+				class="form-control"
+				formControlName="markdown"
+			></ckeditor>
+			<span
+				class="help-block"
+				*ngIf="
+					form.controls.markdown.dirty &&
+					form.controls.markdown.errors?.required
+				"
+				style="color: red"
+			>
+				This field is required.
+			</span>
+		</div>
+	</div>
+
+	<div class="pb-4">
+		<a href="/" class="btn btn-secondary">Cancel</a>
+		<button
+			[disabled]="processing || !form.valid"
+			type="submit"
+			name="button"
+			class="btn btn-primary ml-2"
+		>
+			Save
+		</button>
+	</div>
+</form>
+
+<script>
+	CKEDITOR.replace('markdown');
+</script>

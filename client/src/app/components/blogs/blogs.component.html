@@ -1,0 +1,38 @@
+<div
+	class="card mt-4 mb-4"
+	style="background-color: aliceblue; border-radius: 0%"
+>
+	<div class="card-body">
+		<h4 class="card-title">{{ blog.title }}</h4>
+		<div class="card-subtitle text-muted mb-2">
+			{{ blog.createdAt | date: 'MMM dd, yyyy' }}
+		</div>
+		<div class="card-text">{{ blog.description }}</div>
+		<div class="mt-2">
+			<button
+				class="button"
+				type="button"
+				routerLink="/create"
+				style="background-color: rgb(131, 245, 245)"
+			>
+				<i class="fa fa-book"></i> Read More
+			</button>
+			<button
+				class="button"
+				type="button"
+				routerLink="/create"
+				style="background-color: rgb(118, 223, 141)"
+			>
+				<i class="fa fa-edit"></i> Edit
+			</button>
+			<button
+				class="button"
+				type="button"
+				routerLink="/create"
+				style="background-color: rgb(231, 83, 83)"
+			>
+				<i class="fa fa-trash"></i> Delete
+			</button>
+		</div>
+	</div>
+</div>
