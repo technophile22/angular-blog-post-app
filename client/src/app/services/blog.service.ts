@@ -50,4 +50,11 @@ export class BlogService {
 			httpOptions,
 		);
 	}
+
+	deleteBlog(id: string): Observable<OperationResult<serverBlog>> {
+		console.log(id);
+		return this.http.delete<OperationResult<serverBlog>>(
+			this.domain + 'deleteBlog/' + id,
+		);
+	}
 }

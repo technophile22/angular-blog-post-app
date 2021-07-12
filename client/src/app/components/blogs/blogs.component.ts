@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { serverBlog } from 'src/app/objects/serverBlog';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
 	selector: 'app-blogs',
@@ -8,7 +10,13 @@ import { serverBlog } from 'src/app/objects/serverBlog';
 })
 export class BlogsComponent implements OnInit {
 	@Input() blog!: serverBlog;
-	constructor() {}
+	@Output() onDeleteBlog: EventEmitter<serverBlog> = new EventEmitter();
+
+	constructor(private blogService: BlogService, private router: Router) {}
+
+	deleteFunction(blog: serverBlog) {
+		this.onDeleteBlog.emit(blog);
+	}
 
 	ngOnInit(): void {}
 }

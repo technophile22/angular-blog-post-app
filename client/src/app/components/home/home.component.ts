@@ -29,4 +29,13 @@ export class HomeComponent implements OnInit {
 			}
 		});
 	}
+
+	deleteBlog(blog: serverBlog) {
+		if (confirm('Are you sure to delete this blog?')) {
+			this.blogService.deleteBlog(blog._id).subscribe((res) => {
+				window.alert(res.message);
+			});
+			this.blogPosts = this.blogPosts.filter((item) => item._id != blog._id);
+		}
+	}
 }

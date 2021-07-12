@@ -35,7 +35,7 @@
 			<button
 				class="button ml-2"
 				type="button"
-				[routerLink]="['/delete-blog/', blog._id]"
+				(click)="deleteFunction(blog)"
 				style="background-color: rgb(231, 83, 83)"
 			>
 				<i class="fa fa-trash"></i> Delete

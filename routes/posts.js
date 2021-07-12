@@ -166,7 +166,7 @@ router.put('/editBlog', async (req, res) => {
 
 //delete blog route
 router.delete('/deleteBlog/:id', async (req, res) => {
-	if (!req.body._id) {
+	if (!req.params.id) {
 		res.json({
 			status: 400,
 			message: 'Blog ID is required!',
