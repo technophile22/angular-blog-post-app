@@ -1,0 +1,9 @@
+<div class="container mt-4 mb-4">
+	<h1 clas="mb-4">{{ singleBlog.data.title }}</h1>
+	<div class="text-muted mb-2">
+		{{ singleBlog.data.createdAt | date: 'MMM dd, yyyy' }}
+	</div>
+
+	<!-- <a href="/posts/edit/<%= post.id %>" class="btn btn-dark"><i class="fa fa-edit"></i> Edit Post</a> -->
+	<div class="mt-4" [innerHTML]="singleBlog.data.markdown"></div>
+</div>

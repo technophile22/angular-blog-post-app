@@ -5,7 +5,6 @@ import { Blog } from 'src/app/objects/Blog';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { windowWhen } from 'rxjs/operators';
 import { serverBlog } from 'src/app/objects/serverBlog';
 
 @Component({

@@ -13,11 +13,13 @@ import { HomeComponent } from './components/home/home.component';
 import { CreateComponent } from './components/create/create.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { EditBlogComponent } from './components/edit-blog/edit-blog.component';
+import { ViewBlogComponent } from './components/view-blog/view-blog.component';
 
 const appRoutes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'create', component: CreateComponent },
 	{ path: 'edit-blog/:id', component: EditBlogComponent },
+	{ path: 'view-blog/:id', component: ViewBlogComponent },
 	{ path: '*', component: HomeComponent },
 ];
 
@@ -29,6 +31,7 @@ const appRoutes: Routes = [
 		CreateComponent,
 		BlogsComponent,
 		EditBlogComponent,
+		ViewBlogComponent,
 	],
 	imports: [
 		BrowserModule,
