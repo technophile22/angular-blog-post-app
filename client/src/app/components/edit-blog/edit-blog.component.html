@@ -1,6 +1,11 @@
-<h1 class="page-header mt-2">Create Post</h1>
+<h1 class="page-header mt-2">Edit Post</h1>
 
-<form [formGroup]="form" name="blogForm" (submit)="onBlogSubmit()">
+<form
+	[formGroup]="form"
+	name="blogForm"
+	(submit)="onBlogSubmit()"
+	*ngIf="!loading && this.form"
+>
 	<div class="form-group">
 		<label for="title">Title</label>
 		<div

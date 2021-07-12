@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Blog } from 'src/app/Blog';
+import { Blog } from 'src/app/objects/Blog';
 import { BlogService } from 'src/app/services/blog.service';
+import { serverBlog } from 'src/app/objects/serverBlog';
+import { OperationResult } from 'src/app/objects/OperationResult';
+import { Router } from '@angular/router';
+import { OperatorFunction } from 'rxjs';
 
 @Component({
 	selector: 'app-home',
@@ -8,17 +12,21 @@ import { BlogService } from 'src/app/services/blog.service';
 	styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-	blogPosts: Blog[] = [];
+	blogPosts: serverBlog[] = [];
+	singleBlog: OperationResult<Blog>;
 
-	constructor(private blogService: BlogService) {}
+	constructor(private blogService: BlogService, private router: Router) {}
 
 	getAllBlogs() {}
 
 	ngOnInit(): void {
-		this.blogService.getAllBlogs().subscribe((blogPosts) => {
-			console.log('blogs are ', blogPosts);
-			this.blogPosts = blogPosts;
-			console.log('this blog posts are', this.blogPosts);
+		this.blogService.getAllBlogs().subscribe((res) => {
+			if (res.status == 404) {
+				//this.router.navigate(['/']);
+				console.log('No blogs found');
+			} else {
+				this.blogPosts = res.data;
+			}
 		});
 	}
 }

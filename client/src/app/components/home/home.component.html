@@ -1,2 +1,7 @@
 <h2 class="page-header mt-4 ml-2">Blog Feed</h2>
-<app-blogs *ngFor="let blog of blogPosts" [blog]="blog"></app-blogs>
+<div *ngIf="blogPosts.length > 0">
+	<app-blogs *ngFor="let blog of blogPosts" [blog]="blog"></app-blogs>
+</div>
+<div *ngIf="blogPosts.length == 0" style="text-align: center; margin-top: 50px">
+	<h2>No Blogs Found</h2>
+</div>

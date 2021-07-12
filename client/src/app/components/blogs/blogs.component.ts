@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Blog } from 'src/app/Blog';
+import { serverBlog } from 'src/app/objects/serverBlog';
 
 @Component({
 	selector: 'app-blogs',
@@ -7,7 +7,7 @@ import { Blog } from 'src/app/Blog';
 	styleUrls: ['./blogs.component.css'],
 })
 export class BlogsComponent implements OnInit {
-	@Input() blog!: Blog;
+	@Input() blog!: serverBlog;
 	constructor() {}
 
 	ngOnInit(): void {}

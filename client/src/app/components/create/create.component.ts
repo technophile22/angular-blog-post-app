@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {
-	FormControl,
-	FormGroup,
-	FormBuilder,
-	Validators,
-} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { BlogService } from 'src/app/services/blog.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-create',
@@ -14,8 +10,6 @@ import { BlogService } from 'src/app/services/blog.service';
 	styleUrls: ['./create.component.css'],
 })
 export class CreateComponent implements OnInit {
-	messageClass = '';
-	message = '';
 	public Editor = ClassicEditor;
 	form: any;
 	processing = false;
@@ -23,6 +17,7 @@ export class CreateComponent implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		private blogService: BlogService,
+		private router: Router,
 	) {
 		this.createNewBlogForm();
 	}
@@ -37,14 +32,19 @@ export class CreateComponent implements OnInit {
 	}
 
 	onBlogSubmit() {
+		this.processing = true; // Disable submit button
 		const blog = {
-			title: this.form.get('title').value, // Title field
-			description: this.form.get('description').value, // Body field
+			title: this.form.get('title').value,
+			description: this.form.get('description').value,
 			markdown: this.form.get('markdown').value,
-			createdAt: Date.now(), // CreatedBy field
+			createdAt: Date.now(),
 		};
-		this.blogService.addNewBlog(blog).subscribe((data) => {
-			console.log('Res', data);
+
+		this.blogService.addNewBlog(blog).subscribe((res) => {
+			window.alert(res.message);
+			this.processing = false;
+			if (res.isSuccess) this.router.navigate(['/']);
+			else this.router.navigate(['/create']);
 		});
 		this.form.reset();
 	}

@@ -12,15 +12,24 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { CreateComponent } from './components/create/create.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
+import { EditBlogComponent } from './components/edit-blog/edit-blog.component';
 
 const appRoutes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'create', component: CreateComponent },
+	{ path: 'edit-blog/:id', component: EditBlogComponent },
 	{ path: '*', component: HomeComponent },
 ];
 
 @NgModule({
-	declarations: [AppComponent, NavbarComponent, HomeComponent, CreateComponent, BlogsComponent],
+	declarations: [
+		AppComponent,
+		NavbarComponent,
+		HomeComponent,
+		CreateComponent,
+		BlogsComponent,
+		EditBlogComponent,
+	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,

@@ -9,26 +9,33 @@
 		</div>
 		<div class="card-text">{{ blog.description }}</div>
 		<div class="mt-2">
+			<!-----View button-->
+
 			<button
 				class="button"
 				type="button"
-				routerLink="/create"
-				style="background-color: rgb(131, 245, 245)"
+				[routerLink]="['/view-blog/', blog._id]"
+				style="background-color: rgb(255, 167, 95)"
 			>
 				<i class="fa fa-book"></i> Read More
 			</button>
+
+			<!-----Edit button-->
 			<button
-				class="button"
+				class="button ml-2"
 				type="button"
-				routerLink="/create"
+				[routerLink]="['/edit-blog/', blog._id]"
 				style="background-color: rgb(118, 223, 141)"
 			>
 				<i class="fa fa-edit"></i> Edit
 			</button>
+
+			<!-----Delete button-->
+
 			<button
-				class="button"
+				class="button ml-2"
 				type="button"
-				routerLink="/create"
+				[routerLink]="['/delete-blog/', blog._id]"
 				style="background-color: rgb(231, 83, 83)"
 			>
 				<i class="fa fa-trash"></i> Delete

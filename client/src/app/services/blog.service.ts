@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Blog } from '../Blog';
+import { Blog } from '../objects/Blog';
+import { serverMessage } from '../objects/serverMessage';
+import { serverBlog } from '../objects/serverBlog';
+import { OperationResult } from '../objects/OperationResult';
+import { map } from 'rxjs/operators';
 
 const httpOptions = {
 	headers: new HttpHeaders({
@@ -17,13 +21,33 @@ export class BlogService {
 
 	constructor(private http: HttpClient) {}
 
-	addNewBlog(task: Blog): Observable<Blog> {
+	addNewBlog(task: Blog): Observable<OperationResult<serverBlog>> {
 		console.log('task', task);
-		console.log(httpOptions);
-		return this.http.post<Blog>(this.domain + 'new', task, httpOptions);
+		return this.http.post<OperationResult<serverBlog>>(
+			this.domain + 'new',
+			task,
+			httpOptions,
+		);
 	}
 
-	getAllBlogs(): Observable<Blog[]> {
-		return this.http.get<Blog[]>(this.domain + 'getAllBlogs');
+	getAllBlogs(): Observable<OperationResult<serverBlog[]>> {
+		return this.http.get<OperationResult<serverBlog[]>>(
+			this.domain + 'getAllBlogs',
+		);
+	}
+
+	getSingleBlog(id: string): Observable<OperationResult<serverBlog>> {
+		return this.http.get<OperationResult<serverBlog>>(
+			this.domain + 'getOneBlog/' + id,
+		);
+	}
+
+	editBlog(task: serverBlog): Observable<OperationResult<serverBlog>> {
+		console.log('task', task);
+		return this.http.put<OperationResult<serverBlog>>(
+			this.domain + 'editBlog/',
+			task,
+			httpOptions,
+		);
 	}
 }
