@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Blog } from '../objects/Blog';
-import { serverMessage } from '../objects/serverMessage';
 import { serverBlog } from '../objects/serverBlog';
 import { OperationResult } from '../objects/OperationResult';
-import { map } from 'rxjs/operators';
 
 const httpOptions = {
 	headers: new HttpHeaders({

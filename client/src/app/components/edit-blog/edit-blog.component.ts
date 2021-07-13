@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from 'src/app/services/blog.service';
 import { OperationResult } from 'src/app/objects/OperationResult';
-import { Blog } from 'src/app/objects/Blog';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
