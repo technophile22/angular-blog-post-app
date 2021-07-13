@@ -5,7 +5,9 @@ This is a platform to post, edit, view and delete blog posts.
 # Tech stack
 
 Front-end is built using `AngularJs`. `CKEditor` is used as a rich text editor.
+
 Back-end is built using `NodeJs` and `Express`.
+
 Database used is `mongoDB`.
 
 # How to start the project?
@@ -17,5 +19,4 @@ Database used is `mongoDB`.
 - cd into `client` folder and run `npm install` to install all dependencies of frontend.
 - Run `ng serve` to host frontend on your local machine.
 - Open your browser and browse to `localhost:4200` to see the magic.
-
-P.S. - Check `server.js` once for a proper connection to mongo database.
+- Check `server.js` once for a proper connection to mongo database.
