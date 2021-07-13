@@ -62,6 +62,10 @@ export class EditBlogComponent implements OnInit {
 		this.form.reset();
 	}
 
+	goBack(): void {
+		this.router.navigate(['/']);
+	}
+
 	ngOnInit(): void {
 		this.currentUrl = this.activatedRoute.snapshot.params;
 

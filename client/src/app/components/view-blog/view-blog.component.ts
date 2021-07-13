@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { serverBlog } from 'src/app/objects/serverBlog';
 import { BlogService } from 'src/app/services/blog.service';
 import { OperationResult } from 'src/app/objects/OperationResult';
-
+import { Location } from '@angular/common';
 @Component({
 	selector: 'app-view-blog',
 	templateUrl: './view-blog.component.html',
@@ -18,11 +18,15 @@ export class ViewBlogComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private blogService: BlogService,
 		private router: Router,
+		private location: Location,
 	) {}
 
-	viewBlog() {}
+	goBack(): void {
+		this.location.back();
+	}
 
 	ngOnInit(): void {
+		this.loading = true;
 		this.currentUrl = this.activatedRoute.snapshot.params;
 
 		this.blogService.getSingleBlog(this.currentUrl.id).subscribe((res) => {
@@ -32,7 +36,6 @@ export class ViewBlogComponent implements OnInit {
 			} else {
 				this.singleBlog = res;
 				this.loading = false;
-				this.viewBlog();
 			}
 		});
 	}

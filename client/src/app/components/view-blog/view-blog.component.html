@@ -1,9 +1,25 @@
-<div class="container mt-4 mb-4">
+<div *ngIf="loading" style="text-align: center; margin-top: 50px">
+	<h2>Loading...</h2>
+</div>
+
+<div class="container mt-4 mb-4" *ngIf="!loading">
 	<h1 clas="mb-4">{{ singleBlog.data.title }}</h1>
 	<div class="text-muted mb-2">
 		{{ singleBlog.data.createdAt | date: 'MMM dd, yyyy' }}
 	</div>
+	<div class="mt-4" *ngIf="singleBlog.data.description.length > 0">
+		<h3 clas="mb-4">{{ singleBlog.data.description }}</h3>
+	</div>
+	<button type="button" (click)="goBack()">
+		<i class="fa fa-arrow-left"></i> Back
+	</button>
+	<button
+		type="button"
+		[routerLink]="['/edit-blog/', singleBlog.data._id]"
+		style="margin-left: 10px"
+	>
+		<i class="fa fa-edit"></i> Edit
+	</button>
 
-	<!-- <a href="/posts/edit/<%= post.id %>" class="btn btn-dark"><i class="fa fa-edit"></i> Edit Post</a> -->
 	<div class="mt-4" [innerHTML]="singleBlog.data.markdown"></div>
 </div>

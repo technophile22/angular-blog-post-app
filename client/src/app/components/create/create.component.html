@@ -70,14 +70,14 @@
 	</div>
 
 	<div class="pb-4">
-		<a href="/" class="btn btn-secondary">Cancel</a>
+		<button (click)="goBack()"><i class="fa fa-arrow-left"></i> Back</button>
 		<button
 			[disabled]="processing || !form.valid"
 			type="submit"
 			name="button"
-			class="btn btn-primary ml-2"
+			style="margin-left: 10px"
 		>
-			Save
+			<i class="fa fa-arrow-right"></i>Save
 		</button>
 	</div>
 </form>

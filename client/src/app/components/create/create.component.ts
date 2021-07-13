@@ -21,7 +21,9 @@ export class CreateComponent implements OnInit {
 	) {
 		this.createNewBlogForm();
 	}
-
+	goBack(): void {
+		this.router.navigate(['/']);
+	}
 	createNewBlogForm() {
 		this.form = this.formBuilder.group({
 			title: ['', Validators.compose([Validators.required])],
@@ -41,6 +43,7 @@ export class CreateComponent implements OnInit {
 		};
 
 		this.blogService.addNewBlog(blog).subscribe((res) => {
+			console.log(res);
 			window.alert(res.message);
 			this.processing = false;
 			if (res.isSuccess) this.router.navigate(['/']);

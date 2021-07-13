@@ -1,0 +1,27 @@
+button {
+	position: relative;
+	background: #aad6f3;
+	border: 1px solid black;
+	padding: 10px;
+	font-size: 0.9em;
+	color: black;
+	box-shadow: 4px 4px 0px 0px black;
+	font-family: inherit;
+	font-weight: 500;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+	transition: all 300ms ease-in-out;
+	left: 0;
+	top: 0;
+}
+
+button:hover {
+	left: 4px;
+	top: 4px;
+	box-shadow: 0 0 0 0 black;
+}
+
+button:disabled {
+	cursor: not-allowed;
+	pointer-events: all !important;
+}
