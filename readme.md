@@ -14,7 +14,7 @@ Database used is `mongoDB`.
 
 - Clone this repository into your local environment and cd into the project folder.
 - Enter command `npm install` to install all npm modules and dependencies of backend.
-- Enter command `nodemon run devStart` to start the server.
+- Enter command `npm run devStart` to start the server.
 
 - cd into `client` folder and run `npm install` to install all dependencies of frontend.
 - Run `ng serve` to host frontend on your local machine.
