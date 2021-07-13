@@ -20,7 +20,6 @@ export class BlogService {
 	constructor(private http: HttpClient) {}
 
 	addNewBlog(task: Blog): Observable<OperationResult<serverBlog>> {
-		console.log('task', task);
 		return this.http.post<OperationResult<serverBlog>>(
 			this.domain + 'new',
 			task,
@@ -41,7 +40,6 @@ export class BlogService {
 	}
 
 	editBlog(task: serverBlog): Observable<OperationResult<serverBlog>> {
-		console.log('task', task);
 		return this.http.put<OperationResult<serverBlog>>(
 			this.domain + 'editBlog/',
 			task,
@@ -50,7 +48,6 @@ export class BlogService {
 	}
 
 	deleteBlog(id: string): Observable<OperationResult<serverBlog>> {
-		console.log(id);
 		return this.http.delete<OperationResult<serverBlog>>(
 			this.domain + 'deleteBlog/' + id,
 		);

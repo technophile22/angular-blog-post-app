@@ -121,7 +121,6 @@ router.put('/editBlog', async (req, res) => {
 				});
 			} else {
 				const post = await Post.findById(req.body._id);
-				console.log(post);
 				post.title = req.body.title;
 				post.description = req.body.description;
 				post.markdown = req.body.markdown;
